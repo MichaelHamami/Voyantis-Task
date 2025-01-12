@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = "http://localhost:5555/api";
 
 function App() {
   const [queues, setQueues] = useState([]);
@@ -29,7 +29,7 @@ function App() {
     setLoading(true);
     try {
       const response = await axios.get(`${API_BASE_URL}/${selectedQueue}`);
-      setMessages([...messages, response.data]);
+      setMessages(response.data);
     } catch (error) {
       if (error.response && error.response.status === 204) {
         alert("No messages available in the queue.");
@@ -52,8 +52,8 @@ function App() {
           <h2>Available Queues</h2>
           <ul>
             {queues.map((queue) => (
-              <li key={queue.name}>
-                {queue.name} ({queue.count} messages)
+              <li key={queue.queueName}>
+                {queue.queueName} ({queue.messageCount} messages)
               </li>
             ))}
           </ul>
@@ -67,8 +67,8 @@ function App() {
           >
             <option value="">-- Select a Queue --</option>
             {queues.map((queue) => (
-              <option key={queue.name} value={queue.name}>
-                {queue.name}
+              <option key={queue.queueName} value={queue.queueName}>
+                {queue.queueName}
               </option>
             ))}
           </select>

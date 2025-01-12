@@ -1,9 +1,15 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+  })
+);
 
 const PORT = 5555;
 const DEFAULT_TIMEOUT = 10000;

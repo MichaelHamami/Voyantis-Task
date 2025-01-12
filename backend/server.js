@@ -47,8 +47,9 @@ app.get("/api/:queue_name", async (req, res) => {
 
   if (!queues[queueName] || queues[queueName].length === 0) {
     await new Promise((resolve) => setTimeout(resolve, timeout));
-    if (!queues[queueName]) {
-      if (queues[queueName].length === 0) delete queues[queueName];
+    if (!queues[queueName] || queues[queueName].length === 0) {
+      if (queues[queueName] && queues[queueName].length === 0)
+        delete queues[queueName];
       return res.status(204).send();
     }
   }

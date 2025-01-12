@@ -39,6 +39,12 @@ function App() {
 
       if (response.data.length === 0) {
         alert("No messages available in the queue.");
+        // If no messages available remove the queue from the available queues
+        const updatedQueues = queues.filter(
+          (queue) => queue.queueName !== selectedQueue
+        );
+        setQueues(updatedQueues);
+        setSelectedQueue("");
         return;
       }
 

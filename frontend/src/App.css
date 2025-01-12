@@ -1,0 +1,52 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f7f9fc;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  background-color: #2d3748;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.queue-list,
+.queue-actions,
+.message-list {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+select {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 10px;
+  background-color: #edf2f7;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}

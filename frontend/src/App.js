@@ -23,13 +23,26 @@ function App() {
     fetchQueues();
   }, []);
 
+  useEffect(() => {
+    // reset messages on queue changes
+    if (selectedQueue) {
+      setMessages([]);
+    }
+  }, [selectedQueue]);
+
   // Handle queue selection and fetch messages
   const handleGoClick = async () => {
     if (!selectedQueue) return;
     setLoading(true);
     try {
       const response = await axios.get(`${API_BASE_URL}/${selectedQueue}`);
-      setMessages(response.data);
+
+      if (response.data.length === 0) {
+        alert("No messages available in the queue.");
+        return;
+      }
+
+      setMessages([...messages, response.data]);
     } catch (error) {
       if (error.response && error.response.status === 204) {
         alert("No messages available in the queue.");
